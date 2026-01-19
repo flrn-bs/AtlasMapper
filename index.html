@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="./vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Atlas Mapper — Domain Explorer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,41 +118,15 @@
       margin: 0 auto;
     }
     
-    /* Stats bar */
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      padding: 32px 0;
-      margin-bottom: 40px;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .stat {
-      text-align: center;
-    }
-    
-    .stat-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.75rem;
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-    
-    .stat-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-    
     /* Section title */
     .section-header {
       display: flex;
       align-items: center;
       gap: 16px;
       margin-bottom: 24px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
     }
     
     .section-title {
@@ -374,8 +348,8 @@
       }
     }
   </style>
-</head>
-<body>
+  </head>
+  <body>
   <div class="background-pattern"></div>
   <div class="background-glow"></div>
   
@@ -392,20 +366,6 @@
       <p class="subtitle">Interactive visualization of website architectures and internal link structures</p>
     </header>
     
-    <div class="stats-bar">
-      <div class="stat">
-        <div class="stat-value" id="total-domains">1</div>
-        <div class="stat-label">Domains Mapped</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value" id="total-pages">—</div>
-        <div class="stat-label">Total Pages</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value" id="total-links">—</div>
-        <div class="stat-label">Links Tracked</div>
-      </div>
-    </div>
     
     <div class="section-header">
       <span class="section-title">Available Domains</span>
@@ -428,49 +388,50 @@
         id: 'aol',
         name: 'aol.com',
         description: 'The iconic internet portal that defined the early web era. Mapping its modern architecture and link structure.',
-        icon: '📡',
-        url: './mapper.html',
+        icon: 'aol',
+        url: './aol-com.html',
         status: 'active',
-        pages: 87,
-        links: 342,
         accentColor: '#3b82f6',
         iconBg: 'rgba(59, 130, 246, 0.1)'
       },
       // Add more domains here as you map them
       // Example:
       // {
-      //   id: 'example',
-      //   name: 'example.com',
-      //   description: 'Description of the website.',
-      //   icon: '🔮',
-      //   url: './mapper.html?domain=example',
-      //   status: 'active', // or 'wip'
-      //   pages: 100,
-      //   links: 500,
-      //   accentColor: '#8b5cf6',
-      //   iconBg: 'rgba(139, 92, 246, 0.1)'
+      //   id: 'help-aol',
+      //   name: 'help.aol.com',
+      //   description: 'AOL Help Center and support documentation.',
+      //   icon: 'aol',
+      //   url: './help-aol-com.html',
+      //   status: 'active',
+      //   accentColor: '#3b82f6',
+      //   iconBg: 'rgba(59, 130, 246, 0.1)'
       // },
     ];
+
+    // Logo SVGs
+    const logos = {
+      aol: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 28px; height: 28px;">
+        <circle cx="12" cy="12" r="10" fill="#3b82f6"/>
+        <text x="12" y="16" text-anchor="middle" fill="white" font-family="Arial Black, sans-serif" font-size="8" font-weight="bold">AOL</text>
+      </svg>`
+    };
 
     // Render domain cards
     function renderDomains() {
       const container = document.getElementById('domains-container');
-      let totalPages = 0;
-      let totalLinks = 0;
 
       domains.forEach(domain => {
-        totalPages += domain.pages || 0;
-        totalLinks += domain.links || 0;
-
         const card = document.createElement('a');
         card.href = domain.status === 'wip' ? '#' : domain.url;
         card.className = `domain-card ${domain.status === 'wip' ? 'coming-soon' : ''}`;
         card.style.setProperty('--card-accent', domain.accentColor);
         card.style.setProperty('--icon-bg', domain.iconBg);
         
+        const iconContent = logos[domain.icon] || domain.icon;
+        
         card.innerHTML = `
           <div class="card-header">
-            <div class="card-icon">${domain.icon}</div>
+            <div class="card-icon">${iconContent}</div>
             <div class="card-arrow">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -480,21 +441,6 @@
           <div class="domain-name">${domain.name}</div>
           <p class="domain-description">${domain.description}</p>
           <div class="card-meta">
-            <div class="meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-              </svg>
-              <span class="meta-value">${domain.pages || '—'}</span> pages
-            </div>
-            <div class="meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-              </svg>
-              <span class="meta-value">${domain.links || '—'}</span> links
-            </div>
-            <div style="flex: 1;"></div>
             <span class="status-badge ${domain.status === 'active' ? 'status-active' : 'status-wip'}">
               <span class="status-dot"></span>
               ${domain.status === 'active' ? 'Live' : 'Coming Soon'}
@@ -504,11 +450,6 @@
         
         container.appendChild(card);
       });
-
-      // Update stats
-      document.getElementById('total-domains').textContent = domains.filter(d => d.status === 'active').length;
-      document.getElementById('total-pages').textContent = totalPages > 0 ? totalPages.toLocaleString() : '—';
-      document.getElementById('total-links').textContent = totalLinks > 0 ? totalLinks.toLocaleString() : '—';
     }
 
     // Add placeholder card for future domains
@@ -520,7 +461,11 @@
       placeholder.style.setProperty('--icon-bg', 'rgba(63, 63, 70, 0.3)');
       placeholder.innerHTML = `
         <div class="card-header">
-          <div class="card-icon" style="opacity: 0.5;">➕</div>
+          <div class="card-icon" style="opacity: 0.5;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px; opacity: 0.5;">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
         </div>
         <div class="domain-name" style="opacity: 0.5;">More coming soon...</div>
         <p class="domain-description" style="opacity: 0.4;">New domains will be added as they are mapped and analyzed.</p>
@@ -538,5 +483,5 @@
     renderDomains();
     addPlaceholder();
   </script>
-</body>
+  </body>
 </html>
