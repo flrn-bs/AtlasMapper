@@ -147,7 +147,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 20px;
-      padding-bottom: 80px;
+      padding-bottom: 40px;
     }
     
     .domain-card {
@@ -301,33 +301,6 @@
       box-shadow: none;
     }
     
-    /* Footer */
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 16px 24px;
-      background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .footer-text {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-    
-    .footer-text a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    
-    .footer-text a:hover {
-      color: var(--accent-gold);
-    }
-    
     /* Responsive */
     @media (max-width: 768px) {
       header {
@@ -377,9 +350,6 @@
     </div>
   </div>
   
-  <footer>
-    <p class="footer-text">Built with care · <a href="https://github.com/flrn/AtlasMapper" target="_blank">View on GitHub</a></p>
-  </footer>
 
   <script>
     // Domain configuration - add new domains here
