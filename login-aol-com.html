@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login.aol.com — Arrow Mapper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-primary: #0a0a0b;
+        --bg-secondary: #111113;
+        --border: #27272a;
+        --text-primary: #fafafa;
+        --text-secondary: #a1a1aa;
+        --text-muted: #71717a;
+        --accent-purple: #8b5cf6;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg-secondary);
+      }
+      
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      
+      .back-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+      }
+      
+      .back-link:hover {
+        color: var(--text-primary);
+      }
+      
+      .domain-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      
+      .domain-icon {
+        width: 32px;
+        height: 32px;
+        background: rgba(139, 92, 246, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .domain-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+      
+      h1 {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      
+      .header-right a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s;
+      }
+      
+      .header-right a:hover {
+        color: var(--text-primary);
+      }
+      
+      .header-right svg {
+        width: 14px;
+        height: 14px;
+      }
+      
+      main {
+        flex: 1;
+        display: flex;
+      }
+      
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <a href="./" class="back-link">ArrowMapper</a>
+        <div class="domain-info">
+          <div class="domain-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="10" fill="#8b5cf6"/>
+              <text x="12" y="16" text-anchor="middle" fill="white" font-family="Arial Black, sans-serif" font-size="8" font-weight="bold">AOL</text>
+            </svg>
+          </div>
+          <h1>login.aol.com</h1>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="https://www.figma.com/board/rvQbPIWoAUoMkYOGsUi81G/Mapping?node-id=1-2" target="_blank" rel="noopener noreferrer">
+          Open in FigJam
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+    <main>
+      <iframe 
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/board/rvQbPIWoAUoMkYOGsUi81G/Mapping?node-id=1-2"
+        allowfullscreen
+      ></iframe>
+    </main>
+  </body>
+</html>
